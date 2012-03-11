@@ -1,9 +1,16 @@
-// Generic stats wrappers
-//
-// track_pageview('/jamiew')
-// track_event(['Videos', 'Play', 'Optional 3rd field, e.g. video title'])
-// track_goal('Purchase', 100)
-//
+/*
+ * stats.js: page/event/goal tracking abstraction layer
+ * https://github.com/jamiew/stats.js
+ *
+ * Usage:
+ *  track_pageview('/jamiew')
+ *  track_event(['Videos', 'Play', 'Optional 3rd field, e.g. video title'])
+ *  track_goal('Purchase', 100)
+*/
+
+// TODO don't use global functions, put these in a Stats object
+// TODO some people have requested Piwik and Clicky which would be easy patches :)
+//      I want to add support for Optimizely too
 
 function genetify_enabled() {
   return (typeof(genetify) != "undefined" && genetify.pageview_xid);
