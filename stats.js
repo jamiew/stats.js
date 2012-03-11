@@ -8,6 +8,7 @@
  *  track_goal('Purchase', 100)
 */
 
+// FIXME remove debug/console.log() dependencies
 // TODO don't use global functions, put these in a Stats object
 // TODO some people have requested Piwik and Clicky which would be easy patches :)
 //      I want to add support for Optimizely too
