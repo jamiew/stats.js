@@ -25,6 +25,10 @@ function mixpanel_enabled() {
   return (typeof(mpq) != 'undefined');
 }
 
+function optimizely_enabled() {
+  return (typeof(window.optimizely) != 'undefined');
+}
+
 function track_event(args) {
   debug("### track_event", args);
 
@@ -61,6 +65,11 @@ function track_goal(name, score) {
 
   if (mixpanel_enabled()) {
     mpq.push(["track", name, {'score': score}]);
+  }
+
+  if (optimizely_enabled()) {
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', name, score]);
   }
 }
 
