@@ -11,7 +11,6 @@
 // FIXME remove debug/console.log() dependencies
 // TODO don't use global functions, put these in a Stats object
 // TODO some people have requested Piwik and Clicky which would be easy patches :)
-//      I want to add support for Optimizely too
 
 function genetify_enabled() {
   return (typeof(genetify) != "undefined" && genetify.pageview_xid);
@@ -23,6 +22,10 @@ function ganalytics_enabled() {
 
 function mixpanel_enabled() {
   return (typeof(mpq) != 'undefined');
+}
+
+function optimizely_enabled() {
+  return (typeof(window.optimizely) != 'undefined');
 }
 
 function track_event(args) {
@@ -61,6 +64,11 @@ function track_goal(name, score) {
 
   if (mixpanel_enabled()) {
     mpq.push(["track", name, {'score': score}]);
+  }
+
+  if (optimizely_enabled()) {
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', name, score]);
   }
 }
 
